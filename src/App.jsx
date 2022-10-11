@@ -2,14 +2,13 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
 import AddIcon from '@mui/icons-material/Add';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 function App() {
   const [boards, setBoards] = useState([
     {id: 1, title: 'Сделать', items:[]},
     {id: 2, title: 'В работе', items:[]},
     {id: 3, title: 'Завершено', items:[]},
-    {id: 4, title: 'Отправить на доработку', items:[]}
+    {id: 4, title: 'На доработку', items:[]}
   ])
 
   useEffect(() => {
@@ -115,24 +114,24 @@ function App() {
   }
 
   return (
-    <div className="App w-[100vw] h-[100vh] overflow-hidden ">
+    <div className="App overflow-y-hidden h-[100vh]">
       <Navbar/>
         <div 
-          className='kanban_board items-center h-[100%] justify-center flex gap-8 p-2'
+          className='kanban_board gap-1 flex p-2 min-w-[800px] h-[93%]'
         >
           {boards.map(board => 
             <div 
               key={board.id} 
-              className={board.id == 4 ? 'board border-[5px] rounded-xl border-solid border-[#23272A] p-3 w-[400px] h-[500px] overflow-auto' : 'board border-[5px] rounded-xl border-solid border-[#181b1d] p-3 w-[400px] h-[500px] overflow-auto'}
+              className={'board border-[5px] border-solid border-[#23272A] w-[25%] text-sm overflow-auto'}
               onDragOver={(e) => dragOverHandler(e)}
               onDrop={(e) => dropCardHandler(e, board)}
               >
 
               <div 
-                className='text-3xl text-center p-2 text-[#F6F6F6] flex justify-between select-none'
+                className='text-xl text-center p-2 flex items-center justify-between select-none '
                 >
                 <p className='inline-block'>{board.title}</p>
-                <label htmlFor={board.id} className="btn modal-button"><AddIcon/></label>
+                <label htmlFor={board.id} className="btn modal-button w-[15px] h-[20px]"><AddIcon fontSize='small'/></label>
               </div>
             
               <input type="checkbox" id={board.id} className="modal-toggle" />
@@ -146,20 +145,21 @@ function App() {
               </div>
               
               {board.items.map(item => 
-                <div key={item.id} className="flex items-center m-2 break-all">
-                  <div key={item.id}
-                  onDragOver={(e) => dragOverHandler(e)}
-                  onDragLeave={(e) => dragLeaveHandler(e)}
-                  onDragStart={(e) => dragStartHandler(e, board, item)}
-                  onDragEnd={(e) => dragEndHandler(e)}
-                  onDrop={(e) => dropHandler(e, board, item)}
-                  className='item text-xl rounded-xl mx-2 my-1 border-[#a991f7] border-[2px] p-2 w-[100%]'
-                  draggable={true}
-                  >
-                    {item.title}
-                  </div>
-
-                  <label htmlFor={item.id} className="btn modal-button"><DeleteForeverIcon/></label>
+                  <div key={item.id} className="flex break-all ">
+                    <label htmlFor={item.id} className="modal-button item text-sm mx-2 my-1 border-[#a991f7] border-[2px] p-2 w-[100%]">
+                      <div key={item.id}
+                      onDragOver={(e) => dragOverHandler(e)}
+                      onDragLeave={(e) => dragLeaveHandler(e)}
+                      onDragStart={(e) => dragStartHandler(e, board, item)}
+                      onDragEnd={(e) => dragEndHandler(e)}
+                      onDrop={(e) => dropHandler(e, board, item)}
+                      className=''
+                      draggable={true}
+                      >
+                        {item.title}
+                      </div>
+                    </label>
+                  
                   <input type="checkbox" id={item.id} className="modal-toggle" />
                   <div className="modal">
                     <div className="modal-box">
