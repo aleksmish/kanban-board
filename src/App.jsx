@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
 import AddIcon from '@mui/icons-material/Add';
@@ -25,6 +25,7 @@ function App() {
   const [currentBoard, setCurrentBoard] = useState(null)
   const [currentItem, setCurrentItem] = useState(null)
   const [card, setCard] = useState('')
+  const inputRefs= useRef(new Array())
 
   function dragOverHandler(e){
     e.preventDefault()
@@ -113,6 +114,12 @@ function App() {
     }))
   }
 
+  const addToRefs = (el) => {
+    if(el && !inputRefs.current.includes(el)){
+      inputRefs.current.push(el)
+    }
+  }
+
   return (
     <div className="App overflow-y-hidden h-[100vh]">
       <Navbar/>
@@ -134,12 +141,12 @@ function App() {
                 <label htmlFor={board.id} className="btn modal-button w-[15px] h-[20px]"><AddIcon fontSize='small'/></label>
               </div>
             
-              <input type="checkbox" id={board.id} className="modal-toggle" />
+              <input type="checkbox" id={board.id} onChange={e => inputRefs.current[board.id - 1].focus()} className="modal-toggle" />
               <div className="modal">
                 <div className="modal-box relative">
                   <label htmlFor={board.id} className="btn btn-sm btn-circle absolute right-2 top-2" onClick={(e) => setCard('')}>✕</label>
                   <h3 className="text-lg font-bold text-center p-5 mb-7">Добавить новую задачу</h3>
-                  <input type="text" placeholder="Задача" className="input input-bordered input-primary w-full max-w-xs" value={card} onChange={(e) => setCard(e.target.value)}/>
+                  <input ref={addToRefs} autoFocus type="text" placeholder="Задача" className="input input-bordered input-primary w-full max-w-xs" value={card} onChange={(e) => setCard(e.target.value)}/>
                   <button className="btn btn-active btn-primary ml-5" onClick={(e) => addHandler(e, board)}>Добавить</button>
                 </div>
               </div>
