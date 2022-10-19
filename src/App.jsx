@@ -29,13 +29,6 @@ function App() {
 
   function dragOverHandler(e){
     e.preventDefault()
-    if(e.target?.classList?.contains("item")){
-      e.target.style.boxShadow = '0 2px 3px gray'
-    }
-  }
-
-  function dragLeaveHandler(e){
-    e.target.style.boxShadow = 'none'
   }
 
   function dragStartHandler(e, board, item){
@@ -43,13 +36,8 @@ function App() {
     setCurrentItem(item)
   }
 
-  function dragEndHandler(e){
-    e.target.style.boxShadow = 'none'
-  }
-
   function dropHandler(e, board, item){
     e.stopPropagation()
-    e.target.style.boxShadow = 'none'
     const currentIndex = currentBoard.items.indexOf(currentItem)
     currentBoard.items.splice(currentIndex,1)
     const dropIndex = board.items.indexOf(item)
@@ -84,7 +72,6 @@ function App() {
 
   function addHandler(e, board) {
     if (!card) return
-    console.log(board)
     const newCard = {id: Date.now(), title: card}
     board.items.push(newCard)
     setBoards(boards.map(b => {
@@ -121,7 +108,7 @@ function App() {
   }
 
   return (
-    <div className="App overflow-y-hidden h-[100vh]">
+    <div className="App overflow-y-hidden h-[100vh] select-none">
       <Navbar/>
         <div 
           className='kanban_board gap-1 flex p-2 min-w-[800px] h-[93%]'
@@ -137,8 +124,8 @@ function App() {
               <div 
                 className='text-xl text-center p-2 flex items-center justify-between select-none '
                 >
-                <p className='inline-block'>{board.title}</p>
-                <label htmlFor={board.id} className="btn modal-button w-[15px] h-[20px]"><AddIcon fontSize='small'/></label>
+                <p className='inline-block text-title'>{board.title}</p>
+                <label htmlFor={board.id} className="btn bg-addBtn border-addBtn modal-button w-[15px] h-[20px]"><AddIcon fontSize='small' style={{color: 'white'}}/></label>
               </div>
             
               <input type="checkbox" id={board.id} onChange={e => inputRefs.current[board.id - 1].focus()} className="modal-toggle" />
@@ -153,14 +140,12 @@ function App() {
               
               {board.items.map(item => 
                   <div key={item.id} className="flex break-all ">
-                    <label htmlFor={item.id} className="modal-button item text-sm mx-2 my-1 border-[#a991f7] border-[2px] p-2 w-[100%]">
+                    <label htmlFor={item.id} className="modal-button item text-sm text-text mx-2 my-1 border-border border-[2px] p-2 w-[100%]">
                       <div key={item.id}
+                      className="width-[100%] height-[100%]"
                       onDragOver={(e) => dragOverHandler(e)}
-                      onDragLeave={(e) => dragLeaveHandler(e)}
                       onDragStart={(e) => dragStartHandler(e, board, item)}
-                      onDragEnd={(e) => dragEndHandler(e)}
                       onDrop={(e) => dropHandler(e, board, item)}
-                      className=''
                       draggable={true}
                       >
                         {item.title}
@@ -168,10 +153,12 @@ function App() {
                     </label>
                   
                   <input type="checkbox" id={item.id} className="modal-toggle" />
-                  <div className="modal">
-                    <div className="modal-box">
-                      <h3 className="font-bold text-lg">Осторожно!</h3>
-                      <p className="py-4">Вы действительно хотите удалить задачу?</p>
+                  <div 
+                    className="modal"
+                    >
+                    <div 
+                      className="modal-box">
+                      <h3 className="font-bold text-lg">Удалить?</h3>
                       <div className="modal-action">
                         <label htmlFor={item.id} className="btn">Нет</label>
                         <label htmlFor={item.id} className="btn" onClick={(e) => deleteHandler(e, board, item)}>Да</label>

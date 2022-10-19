@@ -3,6 +3,7 @@ export default function Navbar() {
 
   const [theme, setTheme] = useState('dark')
   const [firstTheme, setFirstTheme] = useState(null)
+  
   useEffect(() => {
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       setTheme('dark')
@@ -29,7 +30,7 @@ export default function Navbar() {
 
   return (
     <div className='text-3xl flex items-center justify-between py-2 p-5'>
-        <p onClick={() => window.location.reload()} className="cursor-pointer">
+        <p onClick={() => window.location.reload()} className="cursor-pointer text-navbarTitle">
           Kanban Board
         </p>
         {firstTheme === 'dark' 
