@@ -71,7 +71,7 @@ function App() {
   }
 
   function addHandler(e, board) {
-    if (!card) return
+    if (!card || !card.trim()) return
     const newCard = {id: Date.now(), title: card}
     board.items.push(newCard)
     setBoards(boards.map(b => {
