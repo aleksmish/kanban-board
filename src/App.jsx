@@ -71,7 +71,7 @@ function App() {
   }
 
   function addHandler(e, board) {
-    if (!card || !card.trim()) return
+    if (!card.trim()) return
     const newCard = {id: Date.now(), title: card}
     board.items.push(newCard)
     setBoards(boards.map(b => {
@@ -125,9 +125,8 @@ function App() {
                 className='text-xl text-center p-2 flex items-center justify-between select-none '
                 >
                 <p className='inline-block text-title'>{board.title}</p>
-                <label htmlFor={board.id} className="btn bg-addBtn border-addBtn modal-button w-[15px] h-[20px]"><AddIcon fontSize='small' style={{color: 'white'}}/></label>
+                <label htmlFor={board.id} className="btn btn-accent modal-button w-[15px] h-[20px]"><AddIcon fontSize='small' style={{color: 'white'}}/></label>
               </div>
-            
               <input type="checkbox" id={board.id} onChange={e => inputRefs.current[board.id - 1].focus()} className="modal-toggle" />
               <div className="modal">
                 <div className="modal-box relative">

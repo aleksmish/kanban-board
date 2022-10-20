@@ -23,6 +23,7 @@ module.exports = {
           ...require("daisyui/src/colors/themes")["[data-theme=light]"],
           "base-100": "#DBE59E",
           "primary": "#6aa84f",
+          'accent': '#6E8B58',
           '--navbarTitle': '50, 53%, 34%',
           '--title': '40, 100%, 26%',
           '--border': '90, 21%, 26%',
@@ -32,6 +33,7 @@ module.exports = {
         dark: {
           ...require("daisyui/src/colors/themes")["[data-theme=dark]"],
           "primary": "#5663F7",
+          'accent': '#1e2124',
           '--navbarTitle': '0, 0%, 100%',
           '--title': '0, 0%, 96%',
           '--border': '221, 100%, 50%',
