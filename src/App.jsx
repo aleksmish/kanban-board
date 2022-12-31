@@ -158,7 +158,7 @@ const App = () => {
                 
                 {board.items.map(item => 
                     <div key={item.id} className="flex break-all">
-                      <label htmlFor={item.id} className="modal-button item text-sm mx-2 my-1 border-[2px] p-2 w-[100%] cursor-pointer">
+                      <label htmlFor={item.id} className="text-sm mx-2 my-1 border-[2px] border-base-content p-2 w-[100%] cursor-pointer">
                         <div key={item.id}
                         className="width-[100%] height-[100%]"
                         onDragOver={(e) => dragOverHandler(e)}

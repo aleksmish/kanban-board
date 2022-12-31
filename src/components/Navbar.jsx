@@ -62,7 +62,7 @@ export default function Navbar() {
         </p>
         <div className='flex flex-row gap-2'>
           <div className="dropdown dropdown-end" title="Change Language">
-            <label tabIndex={0} className="btn m-1"><TranslateIcon/></label>
+            <label tabIndex={0} className="btn m-1"><TranslateIcon fontSize='small'/></label>
             <ul tabIndex={0} className="dropdown-content menu shadow bg-base-100 rounded-box text-sm w-52 p-2">
                 <li onClick={() => {changeLanguage('en')}} className='flex '>
                   <button className={lang === 'en' ? 'active' : ''}>
@@ -79,7 +79,7 @@ export default function Navbar() {
             </ul>
           </div>
           <div className="dropdown dropdown-end" title="Change Theme">
-            <label tabIndex={0} className="btn m-1">Theme</label>
+            <label tabIndex={0} className="btn m-1 normal-case">Theme</label>
             <ul tabIndex={0} className="dropdown-content menu shadow bg-base-100 rounded-box text-sm w-52 p-2">
             <li onClick={() => changeTheme('dark')}>
               <button className={theme == 'dark' ? 'active' : ''}>
