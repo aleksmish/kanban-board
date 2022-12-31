@@ -48,10 +48,10 @@ export default function Navbar() {
 
   const changeLanguage = (lang) => {
     if (lang === 'en') {
-      setLang('ru')
+      setLang('en')
     }
     else {
-      setLang('en')
+      setLang('ru')
     }
   }
 
