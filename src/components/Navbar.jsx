@@ -64,13 +64,13 @@ export default function Navbar() {
           <div className="dropdown dropdown-end" title="Change Language">
             <label tabIndex={0} className="btn m-1"><TranslateIcon/></label>
             <ul tabIndex={0} className="dropdown-content menu shadow bg-base-100 rounded-box text-sm w-52 p-2">
-                <li onClick={() => {changeLanguage('en'); setLang('en')}} className='flex '>
+                <li onClick={() => {changeLanguage('en')}} className='flex '>
                   <button className={lang === 'en' ? 'active' : ''}>
                     <img src='https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.0/svg/1f1ec-1f1e7.svg' loading='lazy' className='w-5'></img>
                     <a>English</a>
                   </button>
                 </li>
-                <li onClick={() => {changeLanguage('ru'); setLang('ru')}} className='flex'>
+                <li onClick={() => {changeLanguage('ru')}} className='flex'>
                   <button className={lang === 'en' ? '' : 'active'}>
                     <img src='https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.0/svg/1f1f7-1f1fa.svg' loading='lazy' className='w-5'></img>
                     <a>Русский</a>
