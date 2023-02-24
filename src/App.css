@@ -1,19 +1,38 @@
-.board::-webkit-scrollbar{
-    width: .65rem;  
+.board::-webkit-scrollbar {
+  width: 0.65rem;
 }
 
 .board::-webkit-scrollbar-track {
-    border-radius: 100vw;
-    background: darkgrey;
-    margin-block: .05rem;
+  border-radius: 100vw;
+  background: darkgrey;
+  margin-block: 0.05rem;
 }
 
 .board::-webkit-scrollbar-thumb {
-    background:rgb(83, 83, 83);
-    border:.01rem solid rgb(78, 78, 78);
-    border-radius: 100vw;
+  background: rgb(83, 83, 83);
+  border: 0.01rem solid rgb(78, 78, 78);
+  border-radius: 100vw;
 }
 
 .board::-webkit-scrollbar-thumb:hover {
-    background:rgba(83, 83, 83, 0.897);
+  background: rgba(83, 83, 83, 0.897);
+}
+
+.dragging {
+  border: 2px solid white;
+  background-color: rgb(64, 65, 68);
+  color: white;
+  opacity: 1;
+  position: absolute;
+  top: -1000px;
+  padding: 10px;
+  z-index: 2;
+}
+
+.dragging span {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow-wrap: break-word;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
 }
