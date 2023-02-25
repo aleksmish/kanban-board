@@ -1,6 +1,6 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import AddIcon from '@mui/icons-material/Add';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import AddIcon from "@mui/icons-material/Add";
 
 const Board = ({
   board,
@@ -21,7 +21,7 @@ const Board = ({
   return (
     <div
       className={
-        'board border-[5px] border-solid border-[#23272A] w-[25%] text-sm overflow-auto rounded-lg'
+        "board border-[5px] border-solid border-[#23272A] w-[25%] text-sm overflow-auto rounded-lg"
       }
       onDragEnd={(e) => dragEndHandler(e)}
       onDragOver={(e) => dragOverHandler(e)}
@@ -33,7 +33,7 @@ const Board = ({
           htmlFor={board.id}
           className="btn modal-button w-[15px] h-[20px]"
         >
-          <AddIcon fontSize="small" style={{ color: 'white' }} />
+          <AddIcon fontSize="small" style={{ color: "white" }} />
         </label>
       </div>
       <input
@@ -47,19 +47,19 @@ const Board = ({
           <label
             htmlFor={board.id}
             className="btn btn-sm btn-circle absolute right-2 top-2"
-            onClick={(e) => setCard('')}
+            onClick={(e) => setCard("")}
           >
             ✕
           </label>
           <h3 className="text-lg font-bold text-center p-5 mb-7">
-            {t('Add new task')}
+            {t("Add new task")}
           </h3>
           <div className="flex flex-row">
             <input
               ref={addToRefs}
               autoFocus
               type="text"
-              placeholder={t('Describe task...')}
+              placeholder={t("Describe task...")}
               className="input input-bordered input-primary w-full"
               value={card}
               onChange={(e) => setCard(e.target.value)}
@@ -68,7 +68,7 @@ const Board = ({
               className="btn btn-active btn-primary ml-5"
               onClick={(e) => addHandler(e, board)}
             >
-              {t('Add')}
+              {t("Add")}
             </button>
           </div>
         </div>
@@ -98,17 +98,17 @@ const Board = ({
             draggable={true}
           >
             <div className="modal-box">
-              <h3 className="font-bold text-lg">{t('Delete?')}</h3>
+              <h3 className="font-bold text-lg">{t("Delete?")}</h3>
               <div className="modal-action">
                 <label htmlFor={item.id} className="btn">
-                  {t('No')}
+                  {t("No")}
                 </label>
                 <label
                   htmlFor={item.id}
                   className="btn"
                   onClick={(e) => deleteHandler(e, board, item)}
                 >
-                  {t('Yes')}
+                  {t("Yes")}
                 </label>
               </div>
             </div>

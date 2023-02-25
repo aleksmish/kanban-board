@@ -20,11 +20,11 @@
 
 .dragging {
   border: 2px solid white;
-  background-color: rgb(64, 65, 68);
   color: white;
   opacity: 1;
   position: absolute;
   top: -1000px;
+  left: -1000px;
   padding: 10px;
   z-index: 2;
 }

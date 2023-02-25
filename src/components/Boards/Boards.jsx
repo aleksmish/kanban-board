@@ -1,19 +1,19 @@
-import React, { useRef, useState } from 'react';
-import useLocalStorage from '../hooks/useLocalStorage';
-import { removeGhostElement } from '../helpers';
-import Board from './Board';
+import React, { useCallback, useRef, useState } from "react";
+import useLocalStorage from "../../hooks/useLocalStorage";
+import { removeGhostElement } from "../../helpers";
+import Board from "../Board/Board";
 
 const Boards = () => {
-  const [boards, setBoards] = useLocalStorage('items', [
-    { id: 1, title: 'Backlog', items: [] },
-    { id: 2, title: 'To Do', items: [] },
-    { id: 3, title: 'Ongoing', items: [] },
-    { id: 4, title: 'Done', items: [] },
+  const [boards, setBoards] = useLocalStorage("items", [
+    { id: 1, title: "Backlog", items: [] },
+    { id: 2, title: "To Do", items: [] },
+    { id: 3, title: "Ongoing", items: [] },
+    { id: 4, title: "Done", items: [] },
   ]);
 
   const [currentBoard, setCurrentBoard] = useState(null);
   const [currentItem, setCurrentItem] = useState(null);
-  const [card, setCard] = useState('');
+  const [card, setCard] = useState("");
   const inputRefs = useRef(new Array());
 
   function dragOverHandler(e) {
@@ -21,7 +21,7 @@ const Boards = () => {
   }
 
   function dragStartHandler(e, board, item) {
-    const ghostElement = document.createElement('div');
+    const ghostElement = document.createElement("div");
 
     const text = e.target.innerText || e.target.textContent;
     let threshold = 300; // when width or height exceeds 300 ghostElement appears semi-transparent
@@ -30,10 +30,11 @@ const Boards = () => {
       e.target.offsetHeight,
       threshold
     )}px`;
-    ghostElement.classList.add('dragging');
-    ghostElement.classList.add('break-all');
+    ghostElement.classList.add("dragging");
+    ghostElement.classList.add("bg-neutral");
+    ghostElement.classList.add("break-all");
 
-    const span = document.createElement('span');
+    const span = document.createElement("span");
     span.innerText = text;
 
     ghostElement.appendChild(span);
@@ -104,7 +105,7 @@ const Boards = () => {
         return b;
       })
     );
-    setCard('');
+    setCard("");
   }
 
   function deleteHandler(e, board, item) {
@@ -124,14 +125,11 @@ const Boards = () => {
     );
   }
 
-  const addToRefs = (el) => {
-    if (el && !inputRefs.current.includes(el)) {
-      inputRefs.current.push(el);
-    }
-  };
-
+  const addToRefs = useCallback(function (el) {
+    inputRefs.current.push(el);
+  }, []);
   return (
-    <div className="gap-1 flex p-2 min-w-[800px] h-[93%]">
+    <div role="region" className="gap-1 flex p-2 min-w-[800px] h-[93%]">
       {boards.map((board) => (
         <Board
           key={board.id}

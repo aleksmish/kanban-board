@@ -1,3 +1,3 @@
-import removeGhostElement from './removeGhostElement';
+import removeGhostElement from "./removeGhostElement";
 
 export { removeGhostElement };
